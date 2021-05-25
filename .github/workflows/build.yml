@@ -16,7 +16,6 @@ on:
   #   paths-ignore:
   #     - '**.md'
 
-  DOCKER_PLATFORMS=linux/amd64
 jobs:
   build:
     runs-on: ubuntu-latest
