@@ -16,6 +16,7 @@ on:
   #   paths-ignore:
   #     - '**.md'
 
+  DOCKER_PLATFORMS=linux/amd64
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -23,10 +24,11 @@ jobs:
       -
         name: Prepare
         id: prepare
+        # DOCKER_PLATFORMS=linux/amd64,linux/386,linux/ppc64le,linux/arm/6,linux/arm/7,linux/arm64
         run: |
           DOCKER_USERNAME=${{ secrets.DOCKER_USERNAME }}
           DOCKER_IMAGE=spheroidresearch/nebula
-          DOCKER_PLATFORMS=linux/amd64,linux/386,linux/ppc64le,linux/arm/6,linux/arm/7,linux/arm64
+          DOCKER_PLATFORMS=linux/amd64
           VERSION=$(curl --silent "https://api.github.com/repos/slackhq/nebula/releases/latest" | grep -Po '"tag_name": "\K.*?(?=")')
 
           TAGS="--tag ${DOCKER_IMAGE}:${VERSION}"
